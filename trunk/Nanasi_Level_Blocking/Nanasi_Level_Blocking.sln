@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{16A32D9A-7898-588C-5232-F1EEA555FCC4}") = "Nanasi_Level_Blocking", "Assembly-CSharp.csproj", "{5DB748B6-BA27-A3FD-B60F-C86E9E33676F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DB748B6-BA27-A3FD-B60F-C86E9E33676F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB748B6-BA27-A3FD-B60F-C86E9E33676F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB748B6-BA27-A3FD-B60F-C86E9E33676F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB748B6-BA27-A3FD-B60F-C86E9E33676F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
