@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes_ForUI/MainMenu1.unity
+- path: Assets/Scenes_ForBlocking/NewLevelBlock.unity
   isLoaded: 1
   isActive: 1
