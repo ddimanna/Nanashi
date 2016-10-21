@@ -9,7 +9,9 @@ public class CharacterMovement : MonoBehaviour {
 	public float groundRaduis = 0.2f;
 
 	public float maxSpeed = 10;
+	public float jumpForce = 200;
 	public bool grounded = false;
+	public bool doubleJump = false;
 	bool facingRight;
 	bool dashing;
 
@@ -27,12 +29,22 @@ public class CharacterMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(grounded && Input.GetButton("Jump")){
+			//add double jump
+			//add dash coroutines
+			// add wallclimb
+
+			//zero out y velocity first using temo
+			rigi.AddForce(new Vector2(0, jumpForce));
+		}
 	
 	}
 
 	void FixedUpdate(){
 
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRaduis, whatIsGround);
+		//add wallclimb
 		//anim.SetBool("Ground", grounded);
 
 		float move = Input.GetAxis("Horizontal");
