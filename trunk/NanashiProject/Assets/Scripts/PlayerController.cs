@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 	public LayerMask whatIsWall;
 
 	private Vector2 temp;
+	private Vector2 horizontalTemp;
 
 	private int jumpCount;
 
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
 	private bool canDash = true;
 
-	private float dashCoolDown = 1f;
+	private float dashCoolDown = 0.05f;
 
 	private Animator anim;
 
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
 	{
 		rigi = GetComponent<Rigidbody2D>();
 		temp.y = rigi.velocity.y * 0f;
+		horizontalTemp.x = rigi.velocity.x * 0f;
 		anim = GetComponent<Animator>();
 		doubleJumpPickup = false;
 		dashPickup = false;
@@ -106,12 +108,12 @@ public class PlayerController : MonoBehaviour
 		{
 			if (dashPickup)
 			{
-			//	StartCoroutine(rightDash(0.3f));
+				StartCoroutine(rightDash(0.07f));
 			}
 		}
 		else if (!grounded && canDash && !facingRight && Input.GetButtonDown("Dash") && dashPickup)
 		{
-			//StartCoroutine(leftDash(0.3f));
+			StartCoroutine(leftDash(0.07f));
 		}
 
 
@@ -176,7 +178,31 @@ public class PlayerController : MonoBehaviour
 //		<leftDash>c__Iterator.<>f__this = this;
 //		return <leftDash>c__Iterator;
 //	}
+	IEnumerator rightDash(float dashDuration){
+		dashing = true;
 
+		rigi.velocity = horizontalTemp;
+		rigi.AddForce (new Vector2(dashForce, 0f), ForceMode2D.Impulse);
+
+		yield return new WaitForSeconds(dashDuration);
+
+		dashing = false;
+
+	}
+
+	IEnumerator leftDash(float dashDuration){
+		dashing = true;
+
+		rigi.velocity = horizontalTemp;
+		rigi.AddForce (new Vector2(-dashForce, 0f), ForceMode2D.Impulse);
+
+		yield return new WaitForSeconds(dashDuration);
+
+		dashing = false;
+
+
+
+	}
 	private void wallClimb()
 	{
 		grounded = true;
