@@ -159,25 +159,6 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-
-//	public IEnumerator rightDash(float dashDuration)
-//	{
-//		PlayerController.<rightDash>c__Iterator0 <rightDash>c__Iterator = new PlayerController.<rightDash>c__Iterator0();
-//		<rightDash>c__Iterator.dashDuration = dashDuration;
-//		<rightDash>c__Iterator.<$>dashDuration = dashDuration;
-//		<rightDash>c__Iterator.<>f__this = this;
-//		return <rightDash>c__Iterator;
-//	}
-//
-//
-//	public IEnumerator leftDash(float dashDuration)
-//	{
-//		PlayerController.<leftDash>c__Iterator1 <leftDash>c__Iterator = new PlayerController.<leftDash>c__Iterator1();
-//		<leftDash>c__Iterator.dashDuration = dashDuration;
-//		<leftDash>c__Iterator.<$>dashDuration = dashDuration;
-//		<leftDash>c__Iterator.<>f__this = this;
-//		return <leftDash>c__Iterator;
-//	}
 	IEnumerator rightDash(float dashDuration){
 		dashing = true;
 
