@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 	public Transform wallCheck;
 
-	private float groundRadius = 0.2f;
+	private float groundRadius = 0.4f;
 
 	private float wallRadius = 0.2f;
 
@@ -72,9 +72,25 @@ public class PlayerController : MonoBehaviour
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		wall = Physics2D.OverlapCircle(wallCheck.position, wallRadius, whatIsWall);
 
+
+//		RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundRadius);
+//
+//		if(hit){
+//
+//			Debug.Log("HIT");
+//			if(hit.collider.tag == ("Walkable")){
+//
+//				Debug.Log("SUPERMEGAAWESOMEHIT");
+//			}
+//		}
+//
+//		transform.up = hit.normal;
+
+
 		anim.SetBool("Ground", grounded);
 		//anim.SetFloat("vSpeed", rigi.velocity.y);
 		anim.SetFloat("Speed", Mathf.Abs(move));
+
 
 		if (!dashing)
 		{
@@ -102,7 +118,7 @@ public class PlayerController : MonoBehaviour
 //			SceneManager.LoadScene(0);
 //		}
 
-
+		anim.SetBool("Jump", false);
 
 		if (!grounded && canDash && facingRight && Input.GetButtonDown("Dash"))
 		{
@@ -124,12 +140,14 @@ public class PlayerController : MonoBehaviour
 				rigi.velocity = temp;
 				rigi.AddForce(new Vector2(0f, jumpForce));
 				doubleJump = true;
+				anim.SetBool("Jump", true);
 			}
 			else if (doubleJumpPickup && doubleJump)
 			{
 				doubleJump = false;
 				rigi.velocity = temp;
 				rigi.AddForce(new Vector2(0f, jumpForce));
+				anim.SetBool("Jump", true);
 			}
 		}
 
