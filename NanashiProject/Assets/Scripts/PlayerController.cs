@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
 		if (!dashing)
 		{
-			rigi.velocity = new Vector2( move * maxSpeed, rigi.velocity.y);
+			rigi.velocity = new Vector2(move * maxSpeed, rigi.velocity.y);
 			if (move > 0f && !facingRight)
 			{
 				this.Flip();
@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (dashPickup)
 			{
+				Debug.Log("you got the pickup");
 				StartCoroutine(rightDash(0.07f));
 			}
 		}
@@ -180,6 +181,8 @@ public class PlayerController : MonoBehaviour
 	IEnumerator rightDash(float dashDuration){
 		dashing = true;
 
+		Debug.Log("right you're dashing");
+
 		rigi.velocity = horizontalTemp;
 		rigi.AddForce (new Vector2(dashForce, 0f), ForceMode2D.Impulse);
 
@@ -192,6 +195,7 @@ public class PlayerController : MonoBehaviour
 	IEnumerator leftDash(float dashDuration){
 		dashing = true;
 
+		Debug.Log("left you're dashing");
 		rigi.velocity = horizontalTemp;
 		rigi.AddForce (new Vector2(-dashForce, 0f), ForceMode2D.Impulse);
 
