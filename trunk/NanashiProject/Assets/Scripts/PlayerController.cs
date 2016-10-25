@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 	Vector2 upNormalTemp;
 
 	private Animator anim;
+	public UIController collectedCount;
 
 	private void Start()
 	{
@@ -274,6 +275,10 @@ public class PlayerController : MonoBehaviour
 		if (col.gameObject.tag == "DoubleJumpPickup")
 		{
 			doubleJumpPickup = true;
+		}
+
+		if(col.gameObject.tag == "Shroom"){
+			collectedCount.numberCollected++;
 		}
 	}
 
