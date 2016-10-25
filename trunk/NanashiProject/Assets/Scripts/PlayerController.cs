@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour
 		temp.y = rigi.velocity.y * 0f;
 		horizontalTemp.x = rigi.velocity.x * 0f;
 		anim = GetComponent<Animator>();
-		doubleJumpPickup = false;
-		dashPickup = false;
+		doubleJumpPickup = true; //change later
+		dashPickup = true; // change later
 		wallClimbPickup = false;
 		upNormalTemp = transform.up;
 	}
