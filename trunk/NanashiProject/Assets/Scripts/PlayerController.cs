@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
 
 	private float dashCoolDown = 0.05f;
 
+	public float slerpSpeed = 2;
+
+	Vector2 upNormalTemp;
+
 	private Animator anim;
 
 	private void Start()
@@ -63,6 +67,7 @@ public class PlayerController : MonoBehaviour
 		doubleJumpPickup = false;
 		dashPickup = false;
 		wallClimbPickup = false;
+		upNormalTemp = transform.up;
 	}
 
 	private void FixedUpdate()
@@ -73,18 +78,36 @@ public class PlayerController : MonoBehaviour
 		wall = Physics2D.OverlapCircle(wallCheck.position, wallRadius, whatIsWall);
 
 
-//		RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundRadius);
-//
-//		if(hit){
-//
-//			Debug.Log("HIT");
-//			if(hit.collider.tag == ("Walkable")){
-//
-//				Debug.Log("SUPERMEGAAWESOMEHIT");
-//			}
-//		}
-//
-//		transform.up = hit.normal;
+		RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundRadius);
+
+		if(hit){
+
+			Debug.Log("HIT");
+			if(hit.collider.tag == ("Walkable")){
+
+				Debug.Log("SUPERMEGAAWESOMEHIT");
+
+
+			}
+		}
+
+		//transform.up = hit.normal;
+
+//		transform.rotation = Quaternion.Slerp(transform.rotation, 
+//			Quaternion.EulerAngles(new Vector3(hit.normal.x, 0, hit.normal.y)), Time.time * slerpSpeed);
+
+		if(transform.up.x > hit.normal.x + slerpSpeed){
+			//transform.up.y-= slerpSpeed;
+			upNormalTemp = transform.up;
+			upNormalTemp = upNormalTemp - new Vector2(slerpSpeed, 0);
+			transform.up = upNormalTemp;
+
+		}else if(transform.up.x < hit.normal.x - slerpSpeed){
+
+			upNormalTemp = transform.up;
+			upNormalTemp = upNormalTemp + new Vector2(slerpSpeed, 0);
+			transform.up = upNormalTemp;
+		}
 
 
 		anim.SetBool("Ground", grounded);
