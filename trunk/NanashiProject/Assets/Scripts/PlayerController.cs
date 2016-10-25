@@ -108,10 +108,10 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-//		if (Input.GetButtonDown("Select"))
-//		{
-//			SceneManager.LoadScene(1);
-//		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			SceneManager.LoadScene(0);
+		}
 //
 //		if (Input.GetButtonDown("Start"))
 //		{
