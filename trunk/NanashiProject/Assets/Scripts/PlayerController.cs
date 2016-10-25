@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
 	private bool canDash = true;
 
-	private float dashCoolDown = 0.05f;
+	//private float dashCoolDown = 0.05f;
 
 	public float slerpSpeed = 2;
 
