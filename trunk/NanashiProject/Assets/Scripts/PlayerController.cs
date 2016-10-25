@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
 
 	private Animator anim;
 	public UIController collectedCount;
+	//public GameObject findMyShrooms;
 
 	private void Start()
 	{
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
 		dashPickup = true; // change later
 		wallClimbPickup = false;
 		upNormalTemp = transform.up;
+		//findMyShrooms.SetActive(false);
 	}
 
 	private void FixedUpdate()
@@ -190,6 +192,8 @@ public class PlayerController : MonoBehaviour
 			rigi.gravityScale = 1f;
 			isClimbing = false;
 		}
+
+		//findMyShrooms.SetActive(false);
 	}
 
 
@@ -289,4 +293,16 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("youre on a moving platform");
 		}
 	}
+
+//	void OnTriggerStay2D(Collider2D col){
+//		if(col.gameObject.tag == "TurnOnWordBubble"){
+//
+//			findMyShrooms.SetActive(true);
+//		}else{
+//
+//			findMyShrooms.SetActive(false);
+//		}
+//
+//	}
+
 }
