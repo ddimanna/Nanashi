@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour {
 	public GameObject winPanel;
 	//public GameObject player;
 	//public Component playerthings;
+	public PlayerController playerCont;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class UIController : MonoBehaviour {
 
 		if(numberCollected >= 10){
 			//playerthings.setActive = false;
+			playerCont.maxSpeed = 0;
 			winPanel.SetActive(true);
 
 
