@@ -9,7 +9,7 @@ public class UIController : MonoBehaviour {
 
 	public int numberCollected;
 	public GameObject winPanel;
-	public GameObject findMyShrooms;
+	//public GameObject findMyShrooms;
 	//public GameObject player;
 	//public Component playerthings;
 	public PlayerController playerCont;
@@ -28,7 +28,7 @@ public class UIController : MonoBehaviour {
 	void Update () {
 
 
-		findMyShrooms.SetActive(false);
+		//findMyShrooms.SetActive(false);
 		collection.text = numberCollected + " / 10"; 
 
 		if(numberCollected >= 10){
@@ -53,13 +53,6 @@ public class UIController : MonoBehaviour {
 		SceneManager.LoadScene(0);
 	}
 
-	void OnTriggerStay2D(Collider2D col){
-		if(col.gameObject.tag == "TurnOnWordBubble"){
-
-			findMyShrooms.SetActive(true);
-		}
-
-	}
 
 
 }
