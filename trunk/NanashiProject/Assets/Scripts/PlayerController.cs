@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
 		wallClimbPickup = false;
 		upNormalTemp = transform.up;
 		//findMyShrooms.SetActive(false);
+
 	}
 
 	private void FixedUpdate()
