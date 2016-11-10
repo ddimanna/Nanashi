@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
 	public bool wallClimbPickup;
 
+	public bool climbing; //used for animator
+
 	private bool canDash = true;
 
 	//private float dashCoolDown = 0.05f;
@@ -68,7 +70,7 @@ public class PlayerController : MonoBehaviour
 		anim = GetComponent<Animator>();
 		doubleJumpPickup = true; //change later
 		dashPickup = true; // change later
-		wallClimbPickup = false;
+		wallClimbPickup = true;
 		upNormalTemp = transform.up;
 		//findMyShrooms.SetActive(false);
 
@@ -180,7 +182,8 @@ public class PlayerController : MonoBehaviour
 		}
 
 
-		if (wall && Input.GetAxis("Grab") > 0f)
+		//if (wall && Input.GetAxis("Grab") > 0f)
+		if(wall && Input.GetButton("Grab"))
 		{
 			if (wallClimbPickup)
 			{
@@ -188,10 +191,12 @@ public class PlayerController : MonoBehaviour
 				wallClimb();
 			}
 		}
-		else if ((!wall || Input.GetAxis("Grab") <= 0f) && isClimbing)
+		//else if ((!wall || Input.GetAxis("Grab") <= 0f) && isClimbing)
+		else if(!wall) //|| Input.GetButton("Grab"))
 		{
 			rigi.gravityScale = 1f;
 			isClimbing = false;
+			anim.SetBool("Climbing", false);
 		}
 
 		//findMyShrooms.SetActive(false);
@@ -242,12 +247,18 @@ public class PlayerController : MonoBehaviour
 		{
 			rigi.gravityScale = 0f;
 
+			climbing = true;
+
+			anim.SetBool("Climbing", true);
+
 			transform.Translate(0f, 4f * Time.deltaTime, 0f);
 		}
 		else if (Input.GetAxis("Vertical") > 0f)
 		{
 			rigi.gravityScale = 0f;
 			transform.Translate(0f, -4f * Time.deltaTime, 0f);
+
+			anim.SetBool("Climbing", true);
 		}
 		isClimbing = true;
 	}
