@@ -61,6 +61,10 @@ public class PlayerController : MonoBehaviour
 	private Animator anim;
 	public UIController collectedCount;
 	//public GameObject findMyShrooms;
+	public GameObject jumpNotification;
+	public GameObject dashNotification;
+	public GameObject wallClimbNotification;
+	//public GameObject ShroomDudeCollider;
 
 	private void Start()
 	{
@@ -73,6 +77,10 @@ public class PlayerController : MonoBehaviour
 		wallClimbPickup = false;
 		upNormalTemp = transform.up;
 		//findMyShrooms.SetActive(false);
+		jumpNotification.SetActive(false);
+		dashNotification.SetActive(false);
+		wallClimbNotification.SetActive(false);
+		//ShroomDudeCollider.SetActive (true);
 
 	}
 
@@ -276,6 +284,8 @@ public class PlayerController : MonoBehaviour
 		{
 			UnityEngine.Object.Destroy(col.gameObject);
 		}
+
+
 	}
 
 	void OnTriggerEnter2D(Collider2D col)
@@ -283,14 +293,20 @@ public class PlayerController : MonoBehaviour
 		if (col.gameObject.tag == "DashPickup")
 		{
 			dashPickup = true;
+			//start dash pickup coroutine
+			StartCoroutine(DashNotification());
 		}
 		if (col.gameObject.tag == "WallClimbPickup")
 		{
 			wallClimbPickup = true;
+			//start wall climb coroutine
+			StartCoroutine(WallClimbNotification());
 		}
 		if (col.gameObject.tag == "DoubleJumpPickup")
 		{
 			doubleJumpPickup = true;
+			//start the double jump coroutine
+			StartCoroutine(JumpNotification());
 		}
 
 		if(col.gameObject.tag == "Shroom"){
@@ -316,5 +332,43 @@ public class PlayerController : MonoBehaviour
 //		}
 //
 //	}
+	public IEnumerator JumpNotification (){
+
+
+		//PickupNotification.text = "Double Jump Collected";
+		jumpNotification.SetActive(true);
+
+		yield return new WaitForSeconds (4f);
+
+		jumpNotification.SetActive (false);
+
+		//PickupNotification.text = "";
+	}
+
+	public IEnumerator DashNotification (){
+
+
+		//PickupNotification.text = "Double Jump Collected";
+		dashNotification.SetActive(true);
+
+		yield return new WaitForSeconds (4f);
+
+		dashNotification.SetActive (false);
+
+		//PickupNotification.text = "";
+	}
+
+	public IEnumerator WallClimbNotification (){
+
+
+		//PickupNotification.text = "Double Jump Collected";
+		wallClimbNotification.SetActive(true);
+
+		yield return new WaitForSeconds (4f);
+
+		wallClimbNotification.SetActive (false);
+
+		//PickupNotification.text = "";
+	}
 
 }
