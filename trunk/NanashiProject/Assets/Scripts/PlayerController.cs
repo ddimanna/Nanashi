@@ -66,6 +66,15 @@ public class PlayerController : MonoBehaviour
 	public GameObject wallClimbNotification;
 	//public GameObject ShroomDudeCollider;
 
+
+	public AudioSource source;
+	public AudioClip walkSound;
+	public AudioClip dashSound;
+
+
+
+	//AudioSource.clip = the clip i want
+
 	private void Start()
 	{
 		rigi = GetComponent<Rigidbody2D>();
@@ -149,6 +158,16 @@ public class PlayerController : MonoBehaviour
 		{
 			SceneManager.LoadScene(0);
 		}
+
+		if((grounded == true) && ((Input.GetAxis("Horizontal") > 0) || (Input.GetAxis("Horizontal") < 0))){
+
+			StartCoroutine(PlaySomeShit());
+
+		}else{
+
+			source.Stop();
+			source.loop = false;
+		}
 //
 //		if (Input.GetButtonDown("Start"))
 //		{
@@ -223,6 +242,11 @@ public class PlayerController : MonoBehaviour
 	IEnumerator rightDash(float dashDuration){
 		dashing = true;
 
+		source.clip = dashSound;
+
+		source.Play();
+		dashing = true;
+
 		Debug.Log("right you're dashing");
 
 		rigi.velocity = horizontalTemp;
@@ -235,6 +259,10 @@ public class PlayerController : MonoBehaviour
 	}
 
 	IEnumerator leftDash(float dashDuration){
+
+		source.clip = dashSound;
+		//source.loop = true;
+		source.Play();
 		dashing = true;
 
 		Debug.Log("left you're dashing");
@@ -321,17 +349,7 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("youre on a moving platform");
 		}
 	}
-
-//	void OnTriggerStay2D(Collider2D col){
-//		if(col.gameObject.tag == "TurnOnWordBubble"){
-//
-//			findMyShrooms.SetActive(true);
-//		}else{
-//
-//			findMyShrooms.SetActive(false);
-//		}
-//
-//	}
+		
 	public IEnumerator JumpNotification (){
 
 
@@ -369,6 +387,18 @@ public class PlayerController : MonoBehaviour
 		wallClimbNotification.SetActive (false);
 
 		//PickupNotification.text = "";
+	}
+	public IEnumerator PlaySomeShit(){
+
+		source.clip = walkSound;
+		source.loop = true;
+		source.Play();
+		yield return new WaitForSeconds(source.clip.length); // LEGAL
+
+		source.Stop();
+		source.loop = false;
+	
+
 	}
 
 }
