@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject wallClimbNotification;
 	//public GameObject ShroomDudeCollider;
 
+	public ParticleSystem inkTrail;
 
 	public AudioSource source;
 	public AudioClip walkSound;
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
 		jumpNotification.SetActive(false);
 		dashNotification.SetActive(false);
 		wallClimbNotification.SetActive(false);
+		inkTrail.Stop();
 		//ShroomDudeCollider.SetActive (true);
 
 	}
@@ -162,10 +164,12 @@ public class PlayerController : MonoBehaviour
 		if((grounded == true) && ((Input.GetAxis("Horizontal") > 0) || (Input.GetAxis("Horizontal") < 0))){
 
 			StartCoroutine(PlaySomeShit());
+			inkTrail.Play();
 
 		}else{
 
 			source.Stop();
+			inkTrail.Stop();
 			source.loop = false;
 		}
 //
@@ -393,6 +397,7 @@ public class PlayerController : MonoBehaviour
 		source.clip = walkSound;
 		source.loop = true;
 		source.Play();
+
 		yield return new WaitForSeconds(source.clip.length); // LEGAL
 
 		source.Stop();
