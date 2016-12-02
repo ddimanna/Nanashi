@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject jumpNotification;
 	public GameObject dashNotification;
 	public GameObject wallClimbNotification;
+
 	//public GameObject ShroomDudeCollider;
 
 	public ParticleSystem inkTrail;
@@ -91,6 +92,7 @@ public class PlayerController : MonoBehaviour
 		dashNotification.SetActive(false);
 		wallClimbNotification.SetActive(false);
 		inkTrail.Stop();
+
 		//ShroomDudeCollider.SetActive (true);
 
 	}
