@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour {
 	//public GameObject jumpNotification;
 
 	public GameObject shroomDudeCollider;
+	public GameObject lostMyShrooms;
+	public GameObject youFoundMyShrooms;
 
 
 
@@ -26,6 +28,9 @@ public class UIController : MonoBehaviour {
 		numberCollected = 0;
 		winPanel.SetActive(false);
 		shroomDudeCollider.SetActive (true);
+
+		lostMyShrooms.SetActive(true);
+		youFoundMyShrooms.SetActive(false);
 		//jumpNotification.SetActive (false);
 
 		//findMyShrooms.SetActive(false);
@@ -43,6 +48,8 @@ public class UIController : MonoBehaviour {
 
 		if(numberCollected >= 10){
 			shroomDudeCollider.SetActive (false);
+			lostMyShrooms.SetActive(false);
+			youFoundMyShrooms.SetActive(true);
 			//playerthings.setActive = false;
 //			playerCont.maxSpeed = 0;
 //			winPanel.SetActive(true);
