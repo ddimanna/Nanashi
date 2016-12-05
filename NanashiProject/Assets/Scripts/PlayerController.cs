@@ -70,8 +70,13 @@ public class PlayerController : MonoBehaviour
 	public ParticleSystem inkTrail;
 
 	public AudioSource source;
+	public AudioSource dashSource;
+	public AudioSource tailPickupSource;
+	public AudioSource shroomPickupSource;
 	public AudioClip walkSound;
 	public AudioClip dashSound;
+	public AudioClip tailPickupSound;
+	public AudioClip shroomPickupSound;
 
 
 
@@ -100,6 +105,8 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		float move = Input.GetAxis("Horizontal");
+
+		float vMove = Input.GetAxis("Vertical");
 
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		wall = Physics2D.OverlapCircle(wallCheck.position, wallRadius, whatIsWall);
@@ -140,6 +147,7 @@ public class PlayerController : MonoBehaviour
 		anim.SetBool("Ground", grounded);
 		//anim.SetFloat("vSpeed", rigi.velocity.y);
 		anim.SetFloat("Speed", Mathf.Abs(move));
+		anim.SetFloat("verticalSpeed", vMove);
 
 
 		if (!dashing)
@@ -215,9 +223,9 @@ public class PlayerController : MonoBehaviour
 		}
 
 
-		//if (wall && Input.GetAxis("Grab") > 0f)
-		if(wall && Input.GetButton("Grab"))
+		if (wall && Input.GetAxis("Grab") > 0f)
 		{
+			Debug.Log("Grbbing");
 			if (wallClimbPickup)
 			{
 				rigi.velocity = rigi.velocity * 0f;
@@ -248,9 +256,9 @@ public class PlayerController : MonoBehaviour
 	IEnumerator rightDash(float dashDuration){
 		dashing = true;
 
-		source.clip = dashSound;
+		dashSource.clip = dashSound;
 
-		source.Play();
+		dashSource.Play();
 		dashing = true;
 
 		Debug.Log("right you're dashing");
@@ -266,9 +274,9 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator leftDash(float dashDuration){
 
-		source.clip = dashSound;
+		dashSource.clip = dashSound;
 		//source.loop = true;
-		source.Play();
+		dashSource.Play();
 		dashing = true;
 
 		Debug.Log("left you're dashing");
@@ -327,23 +335,33 @@ public class PlayerController : MonoBehaviour
 		if (col.gameObject.tag == "DashPickup")
 		{
 			dashPickup = true;
+			tailPickupSource.clip = tailPickupSound;
+			tailPickupSource.Play();
 			//start dash pickup coroutine
 			StartCoroutine(DashNotification());
 		}
 		if (col.gameObject.tag == "WallClimbPickup")
 		{
 			wallClimbPickup = true;
+			tailPickupSource.clip = tailPickupSound;
+			tailPickupSource.Play();
 			//start wall climb coroutine
 			StartCoroutine(WallClimbNotification());
 		}
 		if (col.gameObject.tag == "DoubleJumpPickup")
 		{
 			doubleJumpPickup = true;
+			tailPickupSource.clip = tailPickupSound;
+			tailPickupSource.Play();
 			//start the double jump coroutine
 			StartCoroutine(JumpNotification());
 		}
 
 		if(col.gameObject.tag == "Shroom"){
+
+			//add in the audo source,clip, and play call
+			shroomPickupSource.clip = shroomPickupSound;
+			shroomPickupSource.Play();
 			collectedCount.numberCollected++;
 		}
 	}
