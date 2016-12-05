@@ -67,7 +67,9 @@ public class PlayerController : MonoBehaviour
 
 	//public GameObject ShroomDudeCollider;
 
-	public ParticleSystem inkTrail;
+	//public ParticleSystem inkTrail;
+
+	public GameObject inkTrail;
 
 	public AudioSource source;
 	public AudioSource dashSource;
@@ -96,8 +98,8 @@ public class PlayerController : MonoBehaviour
 		jumpNotification.SetActive(false);
 		dashNotification.SetActive(false);
 		wallClimbNotification.SetActive(false);
-		inkTrail.Stop();
-
+		//inkTrail.Stop();
+		inkTrail.SetActive(false);
 		//ShroomDudeCollider.SetActive (true);
 
 	}
@@ -171,15 +173,23 @@ public class PlayerController : MonoBehaviour
 			SceneManager.LoadScene(0);
 		}
 
-		if((grounded == true) && ((Input.GetAxis("Horizontal") > 0) || (Input.GetAxis("Horizontal") < 0))){
+//		if((grounded == true) && ((Input.GetAxis("Horizontal") > 0) || (Input.GetAxis("Horizontal") < 0))){
+//
+//			StartCoroutine(PlaySomeShit());
+//			inkTrail.Play();
+
+		if((grounded == true) && (Input.GetAxis("Horizontal") != 0)){
+
 
 			StartCoroutine(PlaySomeShit());
-			inkTrail.Play();
+			//inkTrail.Play();
+			inkTrail.SetActive(true);
 
 		}else{
 
 			source.Stop();
-			inkTrail.Stop();
+			//inkTrail.Stop();
+			inkTrail.SetActive(false);
 			source.loop = false;
 		}
 //
