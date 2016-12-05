@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
 		anim.SetBool("Ground", grounded);
 		//anim.SetFloat("vSpeed", rigi.velocity.y);
 		anim.SetFloat("Speed", Mathf.Abs(move));
-		anim.SetFloat("verticalSpeed", vMove);
+		anim.SetFloat("verticalSpeed", Mathf.Abs(vMove));
 
 
 		if (!dashing)
