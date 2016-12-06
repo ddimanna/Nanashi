@@ -1,8 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class MovingPlatform : MonoBehaviour
-{
+public class EnemyController : MonoBehaviour {
+
 	public float speed = 2f;
 
 	public float leftBound;
@@ -31,7 +31,8 @@ public class MovingPlatform : MonoBehaviour
 		if (moveDirection > 0f && transform.position.x > rightBound)
 		{
 			moveDirection = -1f;
-			if(facingRight){
+
+			if(!facingRight){
 
 				this.Flip();
 			}
@@ -40,7 +41,7 @@ public class MovingPlatform : MonoBehaviour
 		{
 			moveDirection = 1f;
 
-			if(!facingRight){
+			if(facingRight){
 
 				this.Flip();
 			}
