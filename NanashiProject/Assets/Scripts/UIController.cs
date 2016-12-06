@@ -95,13 +95,25 @@ public class UIController : MonoBehaviour {
 
 	public void PlayOnClick(){
 
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene("Intro Video");
 
 	}
 
 	public void ExitOnClick(){
 
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene("MainMenu1");
+	}
+
+	void OnTriggerEnter2D(Collider2D col){
+
+
+		if(numberCollected >= 10){
+
+			if(col.gameObject.tag == "Player"){
+
+				SceneManager.LoadScene("End Video");
+			}
+		}
 	}
 //	void OnCollisionEnter(Collider col){
 //
