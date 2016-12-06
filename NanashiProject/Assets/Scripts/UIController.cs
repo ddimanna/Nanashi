@@ -20,6 +20,7 @@ public class UIController : MonoBehaviour {
 	public GameObject shroomDudeCollider;
 	public GameObject lostMyShrooms;
 	public GameObject youFoundMyShrooms;
+	public GameObject returnToShroomGuy;
 
 
 
@@ -31,6 +32,8 @@ public class UIController : MonoBehaviour {
 
 		lostMyShrooms.SetActive(true);
 		youFoundMyShrooms.SetActive(false);
+
+		returnToShroomGuy.SetActive(false);
 		//jumpNotification.SetActive (false);
 
 		//findMyShrooms.SetActive(false);
@@ -50,16 +53,22 @@ public class UIController : MonoBehaviour {
 			shroomDudeCollider.SetActive (false);
 			lostMyShrooms.SetActive(false);
 			youFoundMyShrooms.SetActive(true);
+
+			if(returnToShroomGuy != null){
+
+				StartCoroutine(ReturnToShroomGuy());
+
+			}
+
 			//playerthings.setActive = false;
 //			playerCont.maxSpeed = 0;
 //			winPanel.SetActive(true);
 
 			//deactivate the collider by shroom guy so we can get wall climb
 
-
-
-
 		}
+
+
 
 //		if (playerCont.doubleJumpPickup == true) {
 //
@@ -71,6 +80,17 @@ public class UIController : MonoBehaviour {
 //		}
 
 	
+	}
+
+	public IEnumerator ReturnToShroomGuy(){
+
+
+		//PickupNotification.text = "Double Jump Collected";
+		returnToShroomGuy.SetActive(true);
+
+		yield return new WaitForSeconds (4f);
+
+		Destroy(returnToShroomGuy);
 	}
 
 	public void PlayOnClick(){
