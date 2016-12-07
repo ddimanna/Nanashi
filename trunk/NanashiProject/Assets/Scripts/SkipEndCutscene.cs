@@ -18,7 +18,7 @@ public class SkipEndCutscene : MonoBehaviour {
 			SceneManager.LoadScene("MainMenu1");
 		}
 
-
+		//duplicate the script
 		if(Input.GetKey(KeyCode.Escape)){
 
 			SceneManager.LoadScene("MainMenu1");
