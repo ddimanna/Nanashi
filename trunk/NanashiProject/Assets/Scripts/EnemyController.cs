@@ -100,8 +100,14 @@ public class EnemyController : MonoBehaviour {
 	public float wallRight = 5.0f;
 	float walkingDirection = 1.0f;
 	Vector3 walkAmount;
+	private Animator anim;
+
 	// Update is called once per frame
 	void Update () {
+		
+		anim.SetFloat("facingRight", walkingDirection);
+
+
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		if (walkingDirection > 0.0f && transform.position.x >= wallRight){
 			walkingDirection = -1.0f;
@@ -116,15 +122,6 @@ public class EnemyController : MonoBehaviour {
 		}
 		transform.Translate(walkAmount);
 	}
-
-	//	public void Flip(){
-	//
-	//		//facingRight = !facingRight;
-	//		Vector3 localScale = transform.localScale;
-	//		localScale.x *= -1f;
-	//		transform.localScale = localScale;
-	//			
-	//	}
 
 
 }

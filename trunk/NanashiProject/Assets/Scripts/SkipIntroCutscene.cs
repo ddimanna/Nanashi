@@ -6,6 +6,8 @@ public class SkipIntroCutscene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		//StartCoroutine(IntroCutsceneDuration());
 	
 	}
 	
@@ -25,4 +27,12 @@ public class SkipIntroCutscene : MonoBehaviour {
 		}
 	
 	}
+
+//	public IEnumerator IntroCutsceneDuration(){
+//
+//		yield return new WaitForSeconds(the duration of the intro cutscene);
+//
+//		SceneManager.LoadScene("Main");
+//
+//	}
 }
