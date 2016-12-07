@@ -6,6 +6,8 @@ public class SkipEndCutscene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+		StartCoroutine(CutSceneDuration());
 	
 	}
 	
@@ -24,5 +26,13 @@ public class SkipEndCutscene : MonoBehaviour {
 			SceneManager.LoadScene("MainMenu1");
 		}
 	
+	}
+
+	public IEnumerator CutSceneDuration(){
+
+		yield return new WaitForSeconds(57);
+
+
+		SceneManager.LoadScene("MainMenu1");
 	}
 }

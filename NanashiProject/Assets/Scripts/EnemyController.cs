@@ -105,12 +105,26 @@ public class EnemyController : MonoBehaviour {
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		if (walkingDirection > 0.0f && transform.position.x >= wallRight){
 			walkingDirection = -1.0f;
+
+//			if(transform.position == wallLeft){
+//
+//
+//			}
 		}
 		else if (walkingDirection < 0.0f && transform.position.x <= wallLeft){
 			walkingDirection = 1.0f;
 		}
 		transform.Translate(walkAmount);
 	}
+
+	//	public void Flip(){
+	//
+	//		//facingRight = !facingRight;
+	//		Vector3 localScale = transform.localScale;
+	//		localScale.x *= -1f;
+	//		transform.localScale = localScale;
+	//			
+	//	}
 
 
 }
