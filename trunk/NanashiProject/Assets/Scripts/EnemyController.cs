@@ -98,10 +98,15 @@ public class EnemyController : MonoBehaviour {
 	public float walkSpeed = 2.0f;
 	public float wallLeft = 0.0f;
 	public float wallRight = 5.0f;
-	float walkingDirection = 1.0f;
+	public float walkingDirection = 1.0f;
 	Vector3 walkAmount;
 	private Animator anim;
 
+
+	void Start(){
+
+		anim = GetComponent<Animator>();
+	}
 	// Update is called once per frame
 	void Update () {
 		
@@ -111,11 +116,6 @@ public class EnemyController : MonoBehaviour {
 		walkAmount.x = walkingDirection * walkSpeed * Time.deltaTime;
 		if (walkingDirection > 0.0f && transform.position.x >= wallRight){
 			walkingDirection = -1.0f;
-
-//			if(transform.position == wallLeft){
-//
-//
-//			}
 		}
 		else if (walkingDirection < 0.0f && transform.position.x <= wallLeft){
 			walkingDirection = 1.0f;
